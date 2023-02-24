@@ -1,0 +1,312 @@
+//Juego elaborado con Pilas, solamente es la función que implementa el juego.
+//Siéntete libre de usar el código, agregar o quitarle líneas de código :)
+//23/02/2023
+
+
+
+void juego()
+{
+    char usuario,opc;
+
+    Pila Torre_A,Torre_B,Torre_C,Torre_Aux;
+
+    Torre_Aux.inicializa();
+    Torre_A.inicializa();
+    Torre_B.inicializa();
+    Torre_C.inicializa();
+
+
+    //Torre_A.push('5');
+   // Torre_A.push('4');
+    Torre_A.push('3');
+    Torre_A.push('2');
+    Torre_A.push('1');
+do{
+    system("cls");
+    cout<<"\n'A'.-Torre A"<<endl;
+    cout<<"\n'B'.-Torre B"<<endl;
+    cout<<"\n'C'.-Torre C"<<endl;
+    cout<<"\nTorre inicio: ";
+    cin>>usuario;
+
+    switch(usuario)
+    {
+    case 'A':
+
+        system("cls");
+        cout<<"\n----TORRE A----\n";
+        if(Torre_A.vacia()){
+            cout<<"\nTorre sin datos"<<endl;
+            system("pause");
+            }
+
+            else{
+
+            while(not Torre_A.vacia())
+            {
+                cout<<Torre_A.top()<<" "<<endl;
+                Torre_Aux.push(Torre_A.top());
+                Torre_A.pop();
+            }
+            while(not Torre_Aux.vacia())
+            {
+                Torre_A.push(Torre_Aux.top());
+                Torre_Aux.pop();
+            }
+            cout<<"\n'B'.-Torre B"<<endl;
+            cout<<"\n'C'.-Torre C"<<endl;
+            cout<<"\nCualquier otra tecla para regresar a las torres."<<endl;
+            cout<<"\nTorre destino: ";
+            cin>>opc;
+
+           switch(opc)
+           {
+           case 'B':
+               if(Torre_B.llena()){
+                    cout<<"\nTORRE LLENA\n";
+                }
+                else{
+
+                    if(Torre_B.vacia() or Torre_B.top()>Torre_A.top()){
+                    Torre_Aux.push(Torre_A.top());
+                    Torre_A.pop();
+                    while(not Torre_Aux.vacia())
+                    {
+                        char elemnto = Torre_Aux.top();
+                        Torre_B.push(elemnto);
+                        cout<<"\nAro transportado: "<<Torre_B.top()<<" "<<endl;
+                        Torre_Aux.pop();
+                    }
+
+
+                    system("pause");
+                    }
+                else {
+                        cout<<"\nNo puede apilar un aro grande encima de una chico.\n";
+                        system("pause");
+                    }
+
+            break;}
+
+           case 'C':
+               if(Torre_C.llena()){
+                    cout<<"\nTORRE LLENA\n";
+                }
+                else{
+
+                    if(Torre_C.vacia()||Torre_C.top()>Torre_A.top()){
+
+                    Torre_Aux.push(Torre_A.top());
+                    Torre_A.pop();
+
+                    while(not Torre_Aux.vacia())
+                    {
+                        char elemnto = Torre_Aux.top();
+                        Torre_C.push(elemnto);
+                        cout<<"\nAro transportado: "<<Torre_C.top()<<" "<<endl;
+                        Torre_Aux.pop();
+                    }
+                    system("pause");
+                    }
+                    else {
+                        cout<<"\nNo puede apilar un aro grande encima de una chico.\n";
+                    system("pause");
+
+                    }
+                break;}
+           default :
+                cout<<" ";
+                break;
+           }
+           }
+        break;
+
+
+    case 'B':
+        system("cls");
+        cout<<"\n----TORRE B----\n";
+        if(Torre_B.vacia()){
+            cout<<"\nTorre sin datos"<<endl;
+            system("pause");}
+        else
+        {
+
+            while(not Torre_B.vacia())
+            {
+                cout<<Torre_B.top()<<" "<<endl;
+                Torre_Aux.push(Torre_B.top());
+                Torre_B.pop();
+            }
+            while(not Torre_Aux.vacia())
+            {
+                Torre_B.push(Torre_Aux.top());
+                Torre_Aux.pop();
+            }
+            cout<<"\n'A'.-Torre A"<<endl;
+            cout<<"\n'C'.-Torre C"<<endl;
+            cout<<"\nCualquier otra tecla para regresar a las torres."<<endl;
+            cout<<"\nTorre destino: ";
+            cin>>opc;
+
+            switch(opc)
+            {
+            case 'A':
+                if(Torre_A.llena()){
+                    cout<<"\nTORRE LLENA\n";
+                }
+                else{
+
+                 if(Torre_A.vacia()||Torre_A.top()>Torre_B.top()){
+                Torre_Aux.push(Torre_B.top());
+                Torre_B.pop();
+                while(not Torre_Aux.vacia())
+                    {
+                        char elemnto = Torre_Aux.top();
+                        Torre_A.push(elemnto);
+                        cout<<"\nAro transportado: "<<Torre_A.top()<<" "<<endl;
+                        Torre_Aux.pop();
+                    }
+                    system("pause");}
+
+                else{
+                    cout<<"\nNo puede apilar un aro grande encima de una chico.\n";
+                    system("pause");
+                }
+                break;}
+            case 'C':
+                if(Torre_C.llena()){
+                    cout<<"\nTORRE LLENA\n";
+                }
+                else{
+
+                    if(Torre_C.vacia()||Torre_C.top()>Torre_B.top()){
+                        Torre_Aux.push(Torre_B.top());
+                        Torre_B.pop();
+                        while(not Torre_Aux.vacia())
+                    {
+                        char elemnto = Torre_Aux.top();
+                        Torre_C.push(elemnto);
+                        cout<<"\nAro transportado: "<<Torre_C.top()<<" "<<endl;
+                        Torre_Aux.pop();
+                    }
+                    system("pause");
+                        }
+                    else{
+                        cout<<"\nNo puede apilar un aro grande encima de una chico.\n";
+                        system("pause");
+                    }
+                break;}
+
+                default :
+                cout<<" ";
+                break;
+                }
+
+
+        }
+    break;
+
+    case 'C':
+        system("cls");
+        cout<<"\n----TORRE C----\n";
+        if(Torre_C.vacia()){
+            cout<<"\nTorre sin datos"<<endl;
+            system("pause");}
+        else
+        {
+            cout<<"\n";
+            while(not Torre_C.vacia())
+            {
+                cout<<Torre_C.top()<<" "<<endl;
+                Torre_Aux.push(Torre_C.top());
+                Torre_C.pop();
+            }
+            while(not Torre_Aux.vacia())
+            {
+                Torre_C.push(Torre_Aux.top());
+                Torre_Aux.pop();
+            }
+
+            cout<<"\n'A'.-Torre A"<<endl;
+            cout<<"\n'B'.-Torre B"<<endl;
+            cout<<"\nCualquier otra tecla para regresar a las torres."<<endl;
+            cout<<"\nTorre destino: ";
+            cin>>opc;
+
+            switch(opc)
+            {
+            case 'A':
+                if(Torre_A.llena()){
+                    cout<<"\nTORRE LLENA\n";
+                }
+                else{
+                if(Torre_A.vacia()||Torre_A.top()>Torre_C.top()){
+                Torre_Aux.push(Torre_C.top());
+                Torre_C.pop();
+
+                while(not Torre_Aux.vacia())
+                    {
+                        char elemnto = Torre_Aux.top();
+                        Torre_A.push(elemnto);
+                        cout<<"\nAro transportado: "<<Torre_A.top()<<" "<<endl;
+                        Torre_Aux.pop();
+                    }
+                    cout<<"\n";
+                    system("pause");
+                }
+                else{
+                    cout<<"\nNo puede apilar un aro grande encima de una chico.\n";
+                    system("pause");
+                }
+            break;}
+
+            case 'B':
+                if(Torre_B.llena()){
+                    cout<<"\nTORRE LLENA\n";
+                }
+                else{
+                if(Torre_B.vacia()||Torre_B.top()>Torre_C.top()){
+                Torre_Aux.push(Torre_C.top());
+                Torre_C.pop();
+
+                while(not Torre_Aux.vacia())
+                    {
+                        char elemnto = Torre_Aux.top();
+                        Torre_B.push(elemnto);
+                        cout<<"\nAro transportado: "<<Torre_B.top()<<" "<<endl;
+                        Torre_Aux.pop();
+                    }
+                    system("pause");
+                }
+                else{
+                    cout<<"\nNo puede apilar un aro grande encima de una chico.\n";
+                    system("pause");
+                }
+            break;}
+            default :
+                cout<<" ";
+                break;
+            }
+
+        }
+        break;
+
+
+    }
+
+
+
+    }while(!Torre_A.vacia() or !Torre_B.vacia());
+        cout<<"\n---Torre C---\n";
+    while(!Torre_C.vacia())
+
+    {
+        cout<<Torre_C.top()<<" "<<endl;
+        Torre_C.pop();
+    }
+    cout<<"\n\nFELICIDADES, HAS GANADO!\n";
+    system("pause");
+
+}
+
+//Fernando Rizo
